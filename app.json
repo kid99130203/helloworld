@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/searchhome/searchhome",
+    "pages/help/help",
+    "pages/contact/contact",
+    "pages/mine/mine",
+    "pages/search_history/search_history",
+    "pages/searchmap/searchmap"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ebe6d2",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "文脉",
+    "backgroundColor": "#000000",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "borderStyle":"white",
+    "selectedColor": "#000",
+    "color": "#bfbfbf",
+    "list": [
+      {
+        "pagePath": "pages/searchhome/searchhome",
+        "text": "搜索",
+        "iconPath": "images/1搜索1.jpg",
+        "selectedIconPath": "images/1搜索2.jpg"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "地图",
+        "iconPath": "images/2地图1.jpg",
+        "selectedIconPath": "images/2地图2.jpg"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "个人",
+        "iconPath": "images/3我的1.jpg",
+        "selectedIconPath": "images/3我的2.jpg"
+      }]
+  },
+  "sitemapLocation": "sitemap.json"
+ 
+}

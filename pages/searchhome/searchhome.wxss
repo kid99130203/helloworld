@@ -1,0 +1,150 @@
+/* pages/searchhome/searchhome.wxss */
+
+page{
+ background: #f3f7f7;
+}
+
+.tipsBlock{
+  border-top: grey 1px solid;
+}
+.tapHover{
+  background-color: grey;
+}
+
+.Content{
+  width:260px;
+  height: 100px;
+  /*background-color:white;
+  border-radius:5px;
+  border: 1px solid #dddddd;
+  box-shadow: 4px 4px 10px 0px grey;*/
+  margin-top:5px;
+  margin-left: 30px;
+  
+  padding-top: 10px;
+}
+.result{
+  width:80%;
+  height: 20px;
+  margin-top: 5px;
+
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left: 10%;
+  font-size: 16px;
+  align-content: center;
+  border-bottom: 1px solid rgba(61, 59, 59, 0.3);
+  border-radius: 10px;
+
+  box-shadow:1px 0px 1px 0px gray;
+}
+
+.container{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: -100;
+}
+.backimg{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  z-index: -90;
+  background: rgba(0,0,0,0.2);
+  background-size: 100% 100%;
+  -webkit-filter:blur(2px);
+  -moz-filter:blur(2px);
+  -o-filter:blur(2px);
+  -ms-filter:blur(2px);
+  filter:blur(0px);
+}
+
+
+.select-one{
+  width:89px;
+  height: 31px;
+  margin:30rpx auto;
+  margin-left: 10px;
+  border: 1px solid #efefef;
+  
+  float: left;
+  background:#fff;
+  position: relative;
+  border-radius: 8px;
+  box-shadow:2px 2px 2px 0px gray;
+
+}
+
+
+.select{
+  box-sizing: border-box;
+  width: 100%;
+  height: 30px;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+ }
+ .select_text{
+  font-size: 18px;
+  flex: 1;
+ }
+ .select_img{
+  width: 40rpx;
+  height: 40rpx;
+  display: block;
+  transition:transform 0.3s;
+ }
+ .select_img_rotate{
+  transform:rotate(180deg); 
+ }
+ .option_box{
+  position: absolute;
+  top: 70rpx;
+  width: 100%;
+  box-sizing: border-box;
+  height: 0;
+  overflow-y: auto;
+  border-top: 0;
+  background: #fff;
+  transition: height 0.3s;
+  z-index: 100;
+
+ }
+ .option{
+  display: block;
+  line-height: 40rpx;
+  font-size: 18px;
+  border-bottom: 1px solid #efefef;
+  padding: 10rpx;
+  z-index: 100;
+ }
+
+ 
+
+ .btn{
+  position: fixed;
+  left: 0%;
+  bottom: 0;
+  /*margin-left: -92px;*/
+  z-index: 2;
+}
+
+
+.tishi{
+  position: absolute;
+  width: 170px;
+  height: 60px;
+  overflow: auto;
+  background-color: #ffffff;
+  border-radius: 0px 0px 5px 5px;
+  margin-top: 32px;
+  margin-left: 100px;
+  z-index: 100;
+  border: 1px grey solid;
+}

@@ -1,0 +1,160 @@
+/* pages/searchmap/searchmap.wxss */
+page{
+  background-image: url(https://6765-getdetail-7g7g1bwafdeeffc4-1306584839.tcb.qcloud.la/cloud_data/beijing/danniao.jpg?sign=cc37f6d8b90310f5de04d44c9d40cf4d&t=1636888309);
+	background-size: 100% 100%;
+	background-attachment: scroll;
+}
+
+.MyMap{
+	width: 100%;
+}
+
+.textInput{
+	display: flex;
+	flex-direction: row;
+	z-index: 100;
+	height: 20%;
+}
+
+.textInput input{
+	width: 375rpx;
+	border: 1px solid grey;
+}
+
+.myForm{
+	width: 750rpx;
+	width: 50%;
+	display: flex;
+	flex-direction: row;
+}
+form input{
+	width: 750rpx;
+	height: 70rpx;
+	font-size: 20px;
+	text-align: center;
+}
+
+.myForm button{
+	width: 375rpx;
+}
+.line{
+	display: flex;
+	flex-direction: row;
+	justify-content: right;
+
+	width:100%;
+	margin-top: 0px;
+
+  padding-top: 0px;
+  padding-bottom: 0px;
+  font-size: 16px;
+  align-content: center;
+}
+
+.line view{
+	width: 50%;
+	border: 1px solid rgb(197, 202, 202);
+	box-shadow:1px 0px 1px 0px gray;
+	border-bottom: 1px solid rgba(61, 59, 59, 0.3);
+	
+	text-align: center;
+	align-content: center;
+	font-size: 16px;
+	overflow-wrap: break-word;
+}
+
+.choose{
+	display: flex;
+	flex-direction: row;
+}
+
+.choose button{
+	width: 375rpx;
+}
+
+
+
+
+
+
+
+
+.tabBar{
+	width: 100px;
+	height: 20px;
+	border-radius: 10px;
+	background-color: rgb(184, 173, 173);
+	margin-top: 10px;
+
+}
+
+.detail{
+	margin-top: 10%;
+	width: 60%;
+	float: right;
+	margin-right:2%;
+}
+
+
+
+.btn{
+  position: fixed;
+  left: 0%;
+  bottom: 0;
+  /*margin-left: -92px;*/
+  z-index: 200;
+}
+
+.result{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+
+
+  width:95%;
+  margin-top: 0px;
+
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-left: 3%;
+  font-size: 16px;
+  align-content: center;
+}
+
+.result view{
+	width: 33%;
+	border: 1px solid rgb(197, 202, 202);
+	
+	border-radius: 5px;
+	box-shadow:1px 0px 1px 0px gray;
+	border-bottom: 1px solid rgba(61, 59, 59, 0.3);
+	
+	text-align: center;
+	align-content: center;
+	font-size: 16px;
+	overflow-wrap: break-word
+}
+
+.reference{
+	justify-content: space-around;
+
+
+  width:95%;
+  margin-top: 0px;
+
+  padding-top: 0px;
+  padding-bottom: 0px;
+  margin-left: 3%;
+  font-size: 16px;
+  align-content: center;
+}
+
+.reference view{
+	align-content: center;
+	font-size: 16px;
+	overflow-wrap: break-word
+}
+
+
+
+

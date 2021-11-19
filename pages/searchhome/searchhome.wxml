@@ -1,0 +1,322 @@
+<!--pages/searchhome/searchhome.wxml-->
+<!--<text>pages/searchhome/searchhome.wxml</text>-->
+
+<view style="padding-top:10px;height:40px">
+  <view style="border:1px solid #dddddd;border-radius:20px;width:190px;height:30px;margin-top:0px;margin-left:90px;float:left;background-color:#fff;box-shadow: 2px 2px 5px 0px grey;" bindtap="tishi" >
+  
+  <!-- 添加了bindinput -->
+    <input type="text" id="search0" placeholder="{{ph[search_dimension]}}" maxlength="50" style="float:left;margin-top:3px;margin-left:10px;width:140px;" bindinput="giveTips" value="{{searchContent}}"/>
+    <image src="/images/_search.png" style="margin-right: 10px;width:20px;height:20px;float:right;margin-top:5px;" bindtap="search" ></image>
+  </view>
+  <view class="tishi" hidden="{{!tishi}}">
+  <!-- 添加代码块 -> 检索 -->
+<view wx:for="{{search_tips}}" wx:for-item = "item" wx:for-index = "index" bindtap="tapTips" hover-class="tapHover"  class="tipsBlock" data-text = "{{item['_id']}}" id="tips{{index}}">
+      {{item['_id']}}:{{item['author']}}
+    </view>     
+    <!-- end -->
+  </view>
+</view>
+
+<!--搜索依据-->
+<view hidden="{{hid}}" style="width:100%;margin-top:15px;">
+  <view class="Content anniu" style="margin-top:0px;background-image: url(https://6765-getdetail-7g7g1bwafdeeffc4-1306584839.tcb.qcloud.la/cloud_data/beijing/%E4%BD%9C%E8%80%85.png?sign=b51213e41a14a8a9c0db273e7631ad0e&t=1635079497);background-size: 100% 100%;" bindtap="search1">
+    <view style="font-size:20px;margin-left:85px;margin-top:35px;float:left;">查找作者</view>
+    <!-- <image src="/images/arrow.png" style="float:right;width:30px;height:30px;margin-right:60px;margin-top:31px"></image> -->
+  </view>
+  <view class="Content anniu" style="background-image: url(https://6765-getdetail-7g7g1bwafdeeffc4-1306584839.tcb.qcloud.la/cloud_data/beijing/%E4%BD%9C%E5%93%81.png?sign=0364c7cc7c78f6017901a2c9b3b3ce61&t=1635079507);background-size: 100% 100%;" bindtap="search2">
+    <view style="font-size:20px;margin-left:85px;margin-top:33px;float:left">查找作品</view>
+    <!-- <image src="/images/arrow.png" style="float:right;width:30px;height:30px;margin-right:60px;margin-top:31px"></image> -->
+  </view>
+  <view class="Content anniu" style="background-image: url(https://6765-getdetail-7g7g1bwafdeeffc4-1306584839.tcb.qcloud.la/cloud_data/beijing/%E6%97%B6%E9%97%B4.png?sign=1961453f8ea85f5c0ed63139013ff659&t=1635079519);background-size: 100% 100%;" bindtap="search3">
+    <view style="font-size:20px;margin-left:85px;margin-top:33px;float:left">查找时间</view>
+    <!-- <image src="/images/arrow.png" style="float:right;width:30px;height:30px;margin-right:60px;margin-top:31px"></image> -->
+  </view>
+  <view class="Content anniu" style="background-image: url(https://6765-getdetail-7g7g1bwafdeeffc4-1306584839.tcb.qcloud.la/cloud_data/beijing/%E5%9C%B0%E7%82%B9.png?sign=19ec06d84b51399fd6f2301bb45030f4&t=1635087329);background-size: 100% 100%;width:253px;height:95px" bindtap="search4">
+    <view style="font-size:20px;margin-left:85px;margin-top:30px;float:left">查找地点</view>
+    <!-- <image src="/images/arrow.png" style="float:right;width:30px;height:30px;margin-right:60px;margin-top:31px"></image> -->
+  </view>
+</view>
+
+<view hidden="{{hid}}" style="margin-left:15px;margin-top:20px;font-size:16px">
+  历史查找
+</view>
+<view style="width:300px;height:100px;margin:20px auto;border:1px solid gray;" hidden="{{hid}}">
+  这里是一些频率较高的历史记录
+</view>
+
+
+<!-- 作家筛选详细项 -->
+<view  hidden="{{!hid0&&!hid1&&!hid2&&!hid3}}" style="height:65px">
+<view style="height: 20px;width:100px;margin-left:20px;font-size:18px;font-weight:bold"  hidden="{{!hid0&&!hid1&&!hid2&&!hid3}}">
+  作家筛选
+</view>
+
+
+<view class='select-one' hidden="{{!hid0&&!hid1&&!hid2&&!hid3}}" style="margin-top:15px">
+
+   <!-- 地域选择  -->
+ <view class='select' catchtap='selectTap1'>
+  <text class='select_text'>{{selectData1[index1]}}</text>
+  <image class='select_img {{show1&&"select_img_rotate"}}' src='/images/choose.png'></image>   
+ </view>
+ 
+ <view class='option_box' style='height:{{show1?(selectData1.length>5?300:selectData1.length*60):0}}rpx;'>
+  <text class='option' style='{{index1==selectData1.length-1&&"border:0;"}}' wx:for='{{selectData1}}' wx:key='this' data-index='{{index}}' catchtap='optionTap1'>{{item}}</text>
+ </view>
+</view>
+
+  <!-- 派系选择  -->
+<view class='select-one' hidden="{{!hid0&&!hid1&&!hid2&&!hid3}}" style="margin-top:15px">
+ <view class='select' catchtap='selectTap2'>
+  <text class='select_text'>{{selectData2[index2]}}</text>
+  <image class='select_img {{show2&&"select_img_rotate"}}' src='/images/choose.png'></image>   
+ </view>
+
+
+ <view class='option_box' style='height:{{show2?(selectData2.length>5?300:selectData2.length*60):0}}rpx;'>
+  <text class='option' style='{{index2==selectData2.length-1&&"border:0;"}}' wx:for='{{selectData2}}' wx:key='this' data-index='{{index}}' catchtap='optionTap2'>{{item}}</text>
+ </view>
+</view>
+
+<!-- 具体作家选择 -->
+<view class='select-one' hidden="{{!hid0&&!hid1&&!hid2&&!hid3}}" style="margin-top:15px">
+ <view class='select' catchtap='selectTap3'>
+  <text class='select_text'>{{selectData3[index3]}}</text>
+  <image class='select_img {{show3&&"select_img_rotate"}}' src='/images/choose.png'></image>   
+ </view>
+
+ <view class='option_box' style='height:{{show3?(selectData3.length>5?300:selectData3.length*60):0}}rpx;'>
+  <text class='option' style='{{index3==selectData3.length-1&&"border:0;"}}' wx:for='{{selectData3}}' wx:key='this' data-index='{{index}}' catchtap='optionTap3'>{{item}}</text>
+ </view>
+</view>
+
+</view>
+<!-- end -->
+
+<!-- 三个 可选维度框 -->
+<view style="margin-top:30px">
+<view hidden="{{!hid}}" style="border:0;width:300px;height:55px;margin:0px auto;">
+  <view class='select-one' style="margin:0px;width:70px;height:40px;padding-top:10px">
+ <view class='select' catchtap='selectTapdim1'>
+  <text class='select_text'>{{dimData[dimindex1]}}</text>
+  <image class='select_img {{dimshow1&&"select_img_rotate"}}' src='/images/choose.png'></image>   
+ </view>
+ <view class='option_box' style='height:{{dimshow1?(dimData.length>5?300:dimData.length*60):0}}rpx;'>
+  <text class='option' style='{{dimindex1==dimData.length-1&&"border:0;"}}' wx:for='{{dimData}}' wx:key='this' data-index='{{index}}' catchtap='optionTapdim1'>{{item}}</text>
+ </view>
+</view>
+
+<!-- 某维度具体检索内容框 -->
+<view hidden="{{!hid11&&!hid12}}" style="border:1px solid #dddddd;border-radius:6px;width:167px;height:40px;padding-top:10px;margin-top:2px;margin-left:5px;float:left;background-color:#fff;box-shadow: 2px 2px 5px 0px grey;">
+  
+  <input type="text" placeholder="搜索 输入完成请按回车" maxlength="50" style="float:left;margin-top:3px;margin-left:10px" bindconfirm="getDimContent" id="dim1"/>
+</view>
+
+<!-- 开始时间 -->
+<view hidden="{{!hid13}}" style="border:1px solid #dddddd;border-radius:6px;width:58px;height:40px;padding-top:10px;margin-top:2px;margin-left:5px;float:left;background-color:#fff;box-shadow: 2px 2px 5px 0px grey;padding-left:10px">
+  
+  <picker mode="date" fields="year" value="{{date}}" start="{{startTime}}" end="{{endTime}}" bindchange="selectDataTimes">
+  <view class="picker">{{datest}}</view>
+  </picker>
+</view>
+
+<view hidden="{{!hid13}}"  style="float:left;margin-left:5px;margin-top:10px">
+  ~
+</view>
+<!-- 截止时间-->
+<view hidden="{{!hid13}}" style="border:1px solid #dddddd;border-radius:6px;width:58px;height:40px;padding-top:10px;margin-top:2px;margin-left:5px;float:left;background-color:#fff;box-shadow: 2px 2px 5px 0px grey;padding-left:10px">
+  
+  <picker mode="date" fields="year" value="{{date}}" start="{{datest}}" end="{{endTime}}" bindchange="selectDataTimee">
+  <view class="picker">{{dateen}}</view>
+</picker>
+</view>
+<!-- 时间选择end -->
+
+<!-- 省市选择器 -->
+<view hidden="{{!hid14}}" style="border:1px solid #dddddd;border-radius:6px;width:161px;margin-top:2px;margin-left:5px;float:left;background-color:#fff;box-shadow: 2px 2px 5px 0px grey;padding-top:5px;padding-left:10px;height:45px">
+  <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+    <view class="picker">
+      {{region[0]}}{{region[1]}}
+    </view>
+  </picker>
+</view>
+
+<view hidden="{{!hid11&&!hid12&&!hid13&&!hid14}}" style="width:40px;float:left;margin-left:1px;height:40px;padding-top:10px;margin-top:2px;border:1px solid #dddddd;border-radius:6px;box-shadow: 2px 2px 5px 0px grey;background-color:#fff;padding-left:5px;font-size:18px" bindtap="restart1">重置</view>
+</view>
+</view>
+
+
+
+
+<view style="margin-top:30px">
+<view hidden="{{!hid}}" style="border:0;width:300px;height:55px;margin:0px auto;">
+  <view class='select-one' style="margin:0px;width:70px;height:40px;padding-top:10px">
+ <view class='select' catchtap='selectTapdim2'>
+  <text class='select_text'>{{dimData[dimindex2]}}</text>
+  <image class='select_img {{dimshow2&&"select_img_rotate"}}' src='/images/choose.png'></image>   
+ </view>
+ <view class='option_box' style='height:{{dimshow2?(dimData.length>5?300:dimData.length*60):0}}rpx;'>
+  <text class='option' style='{{dimindex2==dimData.length-1&&"border:0;"}}' wx:for='{{dimData}}' wx:key='this' data-index='{{index}}' catchtap='optionTapdim2'>{{item}}</text>
+ </view>
+</view>
+
+<view hidden="{{!hid21&&!hid22}}" style="border:1px solid #dddddd;border-radius:6px;width:167px;height:40px;padding-top:10px;margin-top:2px;margin-left:5px;float:left;background-color:#fff;box-shadow: 2px 2px 5px 0px grey;">
+  
+  <input type="text" placeholder="搜索" maxlength="50" style="float:left;margin-top:3px;margin-left:10px" bindconfirm="getDimContent" id="dim2"/>
+</view>
+
+<view hidden="{{!hid23}}" style="border:1px solid #dddddd;border-radius:6px;width:58px;height:40px;padding-top:10px;margin-top:2px;margin-left:5px;float:left;background-color:#fff;box-shadow: 2px 2px 5px 0px grey;padding-left:10px">
+  
+  <picker mode="date" fields="year" value="{{date}}" start="{{startTime}}" end="{{endTime}}" bindchange="selectDataTimes">
+  <view class="picker">{{datest}}</view>
+</picker>
+</view>
+
+<view hidden="{{!hid23}}"  style="float:left;margin-left:5px;margin-top:10px">
+  ~
+</view>
+
+<view hidden="{{!hid23}}" style="border:1px solid #dddddd;border-radius:6px;width:58px;height:40px;padding-top:10px;margin-top:2px;margin-left:5px;float:left;background-color:#fff;box-shadow: 2px 2px 5px 0px grey;padding-left:10px">
+  
+  <picker mode="date" fields="year" value="{{date}}" start="{{datest}}" end="{{endTime}}" bindchange="selectDataTimee">
+  <view class="picker">{{dateen}}</view>
+</picker>
+</view>
+
+
+<view hidden="{{!hid24}}" style="border:1px solid #dddddd;border-radius:6px;width:161px;margin-top:2px;margin-left:5px;float:left;background-color:#fff;box-shadow: 2px 2px 5px 0px grey;padding-top:5px;padding-left:10px;padding-bottom:5px;height:40px;">
+  <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+    <view class="picker" >
+      {{region[0]}}{{region[1]}}
+    </view>
+  </picker>
+</view>
+
+<view hidden="{{!hid21&&!hid22&&!hid23&&!hid24}}" style="width:40px;float:left;margin-left:1px;height:40px;padding-top:10px;margin-top:2px;border:1px solid #dddddd;border-radius:6px;box-shadow: 2px 2px 5px 0px grey;background-color:#fff;padding-left:5px;font-size:18px" bindtap="restart2">重置</view>
+</view>
+</view>
+
+
+
+
+<view style="margin-top:30px">
+<view hidden="{{!hid}}" style="border:0;width:300px;height:55px;margin:0px auto;">
+  <view class='select-one' style="margin:0px;width:70px;height:40px;padding-top:10px">
+ <view class='select' catchtap='selectTapdim3'>
+  <text class='select_text'>{{dimData[dimindex3]}}</text>
+  <image class='select_img {{dimshow3&&"select_img_rotate"}}' src='/images/choose.png'></image>   
+ </view>
+ <view class='option_box' style='height:{{dimshow3?(dimData.length>5?300:dimData.length*60):0}}rpx;'>
+  <text class='option' style='{{dimindex3==dimData.length-1&&"border:0;"}}' wx:for='{{dimData}}' wx:key='this' data-index='{{index}}' catchtap='optionTapdim3'>{{item}}</text>
+ </view>
+</view>
+
+<view hidden="{{!hid31&&!hid32}}" style="border:1px solid #dddddd;border-radius:6px;width:167px;height:40px;padding-top:10px;margin-top:2px;margin-left:5px;float:left;background-color:#fff;box-shadow: 2px 2px 5px 0px grey;">
+  
+  <input type="text" placeholder="搜索" maxlength="50" style="float:left;margin-top:3px;margin-left:10px" bindconfirm="getDimContent" id="dim3"/>
+</view>
+
+<view hidden="{{!hid33}}" style="border:1px solid #dddddd;border-radius:6px;width:58px;height:40px;padding-top:10px;margin-top:2px;margin-left:5px;float:left;background-color:#fff;box-shadow: 2px 2px 5px 0px grey;padding-left:10px">
+  
+  <picker mode="date" fields="year" value="{{date}}" start="{{startTime}}" end="{{endTime}}" bindchange="selectDataTimes">
+  <view class="picker">{{datest}}</view>
+</picker>
+</view>
+
+<view hidden="{{!hid33}}"  style="float:left;margin-left:5px;margin-top:10px">
+  ~
+</view>
+
+<view hidden="{{!hid33}}" style="border:1px solid #dddddd;border-radius:6px;width:58px;height:40px;padding-top:10px;margin-top:2px;margin-left:5px;float:left;background-color:#fff;box-shadow: 2px 2px 5px 0px grey;padding-left:10px">
+  
+  <picker mode="date" fields="year" value="{{date}}" start="{{datest}}" end="{{endTime}}" bindchange="selectDataTimee">
+  <view class="picker">{{dateen}}</view>
+</picker>
+</view>
+
+
+<view hidden="{{!hid34}}" style="border:1px solid #dddddd;border-radius:6px;width:161px;margin-top:2px;margin-left:5px;float:left;background-color:#fff;box-shadow: 2px 2px 5px 0px grey;padding-top:5px;padding-left:10px;padding-bottom:5px;height:40px;">
+  <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+    <view class="picker">
+      {{region[0]}}{{region[1]}}
+    </view>
+  </picker>
+</view>
+
+<view hidden="{{!hid31&&!hid32&&!hid33&&!hid34}}" style="width:40px;float:left;margin-left:1px;height:40px;padding-top:10px;margin-top:2px;border:1px solid #dddddd;border-radius:6px;box-shadow: 2px 2px 5px 0px grey;background-color:#fff;padding-left:5px;font-size:18px" bindtap="restart3">重置</view>
+</view>
+
+</view>
+
+<!--更改搜索条件-->
+<view hidden="{{!hid}}" style="width:100%;margin-top:10px;padding-bottom:20px;height:25px;margin-left:66px">
+  <view class="anniu" style="margin-top:10px;margin-left:20px;width:150px;height:50px;border:1px solid #ddd;border-radius:16px;box-shadow:2px 2px 2px 0px gray;" bindtap="change_search">
+    <view style="font-size:18px;margin-left:23px;margin-top:13px;">更改搜索条件</view>
+  </view>
+  <!--<image src="/images/add.png" style="width:35px;height:35px;float:right;margin-right:50px;margin-top:5px"></image>-->
+</view>
+
+
+<view hidden="{{!hid}}" style="width:100%;height:67px;border:0;margin-top:30px">
+
+<view hidden="{{!hid}}" style="width:120px;margin-top:10px;height:25px;float:left;margin-left:20px;padding-top:10px;font-size:20px;font-weight:600">
+  搜索结果
+</view>
+
+<view hidden="{{!hid}}" style="width:60px;height:65px;border:0;float:right;margin-right:12px">  
+  <view style="width:35px;height:20px;border:0;padding-top:2px;padding-left:4px;font-size:16px;border-radius:8px;background-color:#ebe6d2;box-shadow:1px 1px 1px 0px gray;" bindtap="quanxuan">
+    全选
+  </view>
+  <view style="width:35px;height:20px;border:0;padding-top:2px;padding-left:4px;font-size:16px;border-radius:8px;background-color:#ebe6d2;margin-top:10px;box-shadow:1px 1px 1px 0px gray;" bindtap="fanxuan">
+    反选
+  </view>
+</view>
+
+</view>
+
+
+
+
+
+<!--二级搜索
+<view hidden="{{!hid}}" style="width:100%;height:30px;margin-top:10px;">
+  <view class="select-one">
+    <text style="float:left">地域</text>
+    <image src="/images/choose.png" style="width:25px;height:25px"></image>
+  </view>
+  <view class="select-one ">
+    <text style="float:left">派系</text>
+    <image src="/images/choose.png" style="width:25px;height:25px"></image>
+  </view>
+  <view class="select-one ">
+    <text style="float:left">风格</text>
+    <image src="/images/choose.png" style="width:25px;height:25px"></image>
+  </view>
+</view>
+-->
+
+
+
+<!--展示搜索结果-->
+<view hidden="{{!hid}}" style="width:100%;margin-top:10px;padding-bottom:10px;padding-top:10px;border:1px lightyellow solid;border-radius:8px">
+  <view class="result" wx:for="{{result}}" data-i="{{index}}" bindtap="xuanze" style="background-color:{{item.backcolor}}">
+    {{item.name}}
+  </view>
+</view>
+
+<view>
+  <view class="btn" hidden="{{!duoxuan}}">
+    <button bindtap="quxiao" style="float:left;width:160px;height:50px;margin-left:0px;border-radius:30px;background:rgb(255,255,255,0.6);box-shadow:1px 0px 1px 0px gray;">取消多选</button>
+    <button bindtap="tijiao" style="float:left;width:160px;height:50px;margin-left:0px;border-radius:30px;background:rgb(255,255,255,0.6);box-shadow:1px 0px 1px 0px gray;">地图显示</button>
+  </view>
+
+</view>
+
+
+<view hidden="{{!duoxuan}}" style="width:100%;height:50px">
+
+</view>
+
+<view class="container">
+  <image class="backimg" src='/images/danniao.jpg'></image>
+</view>

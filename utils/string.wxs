@@ -1,0 +1,3 @@
+function myslice(str,a,b){
+  return str.slice(a,b);
+}

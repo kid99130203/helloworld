@@ -1,0 +1,128 @@
+<view>
+
+	<!-- 顶部地图展示区 -->
+	<map name="" class="MyMap" id="myMap" markers="{{locationPoint}}" polyline="{{pathArr}}" show-location="{{ false }}" longitude="{{centerLongitude}}" latitude="{{centerLatitude}}" scale="{{SCALE}}" bindmarkertap = '_showPlaceMsg' style="height:{{maph}}px"></map>
+
+
+	<view class="page-section" style="pointer-events: none;height:{{screenHeight*1.45}}px;width:{{screenWidth}}px "><!-- style="height:{{screenHeight * 3.455}}rpx" * 1.305-->
+	<movable-area bindtouchmove="tuodong" style="width:{{screenWidth*1.45}}px;z-index:20">
+		<movable-view inertia="true" out-of-bounds="false"  y="{{y}}" direction="vertical" style="height:{{screenHeight * 0.8}}px;width:{{screenWidth}}px;z-index:20;background:url({{beijing[bi]}});background-size:100% 100%">
+			<!--<view class="tabBar"></view>-->
+			
+			<view style="width:100%;height:{{screenHeight}}">
+				<view style="width:100%;height:8%;margin-top:3%">
+				<view style="font-size:20px;float:left;margin-left:35%;margin-top:2%">展示信息</view>
+				<image hidden="{{!fullshow}}" src="/images/choose.png" style="height:60%;width:10%;float:left;margin-left:20%;margin-top:2%"></image>
+				</view>
+		<!--表单用于获取查询关键字 -->
+		<!--<view hidden="{{halfshow}}" class="textInput" bindtap="startsearch" style="z-index:100;margin-top:5%">
+			
+	<form bindsubmit="_checkAuthor" class="myForm" style="border:1px solid green">
+		<input type="text" placeholder="请输入作家名" class="myInput" name="keyWorld" disabled="{{disableAuthorInput}}"></input>
+		<button form-type="submit" disabled="{{disableAuthorButton}}">查询作家</button>
+	</form>
+
+	<form bindsubmit="_checkPlace" class="myForm" style="border:1px solid green">
+		<input type="text" placeholder="请输入地点名" class="myInput" name="keyWorld" disabled="{{disablePlaceInput}}"></input>
+		<button form-type="submit" disabled="{{disablePlaceButton}}">查询地点</button>
+	</form>
+</view>-->
+
+
+
+
+	<!--查询作者存在时,每个点详细信息展示-->
+	<view hidden="{{halfshow}}" class="detail"  wx:if="{{!haveAuthor}}">
+		<!--<button bindtap="showWholePoint">总览{{authorName}}一生的创作足迹</button>-->
+		<view class="line">
+			<view>作者:</view>
+			<view>{{authorName}}</view>
+		</view>
+
+		<view class="line">
+			<view>作品:</view>
+			<view>{{workName}}</view>
+		</view>
+
+		<view class="line">
+			<view>创作时间:</view>
+			<view>{{workTime}}</view>
+		</view>
+
+		<view class="line">
+			<view>创作地点:</view>
+			<view>{{workPlace}}</view>
+		</view>
+
+		<!--
+		<view class="choose" wx:if="{{showButton}}">
+			<button bindtap="showBeforePoint">上一个</button>
+			<button bindtap="showNextPoint">下一个</button>
+		</view>
+		-->
+		<view>
+  		
+
+</view>
+
+	</view>
+
+
+<!-- 搜素地点信息展示区 -->
+<view hidden="{{halfshow}}" class="detail"  wx:if="{{havePlace}}">
+		<view class="line">
+			<view>作者:</view>
+			<view>{{authorName}}</view>
+		</view>
+
+		<view class="line">
+			<view>作品:</view>
+			<view>{{workName}}</view>
+		</view>
+
+		<view class="line">
+			<view>作品创作时间:</view>
+			<view>{{workTime}}</view>
+		</view>
+
+		<view class="line">
+			<view>创作地点:</view>
+			<view>{{workPlace}}</view>
+		</view>
+</view>
+
+
+</view>
+
+
+
+		
+    </movable-view>
+	</movable-area>
+</view>
+
+
+
+
+
+
+<view class="btn" wx:if="{{showButton}}">
+				<button bindtap="showBeforePoint" style="float:left;width:{{screenWidth*0.25}}px;height:40px;margin-left:{{screenWidth*0.075}}px;border-radius:0px;background:rgb(255,255,255,0.9);box-shadow:1px 0px 1px 0px gray;background:url(https://6765-getdetail-7g7g1bwafdeeffc4-1306584839.tcb.qcloud.la/cloud_data/beijing/%E7%AB%8B%E4%BD%93%E9%87%91%E8%BE%B9%E7%A5%A5%E4%BA%91%E4%B8%AD%E5%BC%8F%E8%BE%B9%E6%A1%862.png?sign=64ac2ccd3a11d5435f7882a7ccf2fd60&t=1637155617);background-size:100% 100%;font-size:17px" disabled="{{isresult}}">上一个</button>
+				<button bindtap="showWholePoint" style="float:left;width:{{screenWidth*0.3}}px;height:40px;margin-left:{{screenWidth*0.02}}px;border-radius:0px;background:rgb(255,255,255,0.9);box-shadow:1px 0px 1px 0px gray;background:rgb(0,0,0,0);background-size:100% 100%;font-size:17px" disabled="{{isresult}}">动态轨迹</button>
+    		<button bindtap="showNextPoint" style="float:left;width:{{screenWidth*0.25}}px;height:40px;margin-left:{{screenWidth*0.02}}px;border-radius:0px;background:rgb(255,255,255,0.9);box-shadow:1px 0px 1px 0px gray;background:url(https://6765-getdetail-7g7g1bwafdeeffc4-1306584839.tcb.qcloud.la/cloud_data/beijing/%E7%AB%8B%E4%BD%93%E9%87%91%E8%BE%B9%E7%A5%A5%E4%BA%91%E4%B8%AD%E5%BC%8F%E8%BE%B9%E6%A1%861.png?sign=197bf8f76e978f65924b07b83e409eea&t=1637155651);background-size:100% 100%;font-size:17px" disabled="{{isresult}}">下一个</button>
+  	</view>
+
+		<view class="fankui" bindtap="fankui">反馈</view>
+
+
+
+
+
+</view>
+	
+
+		
+
+
+
+
